@@ -1,0 +1,102 @@
+import webbrowser
+import random
+
+
+
+# Name of region, recipe, playlist, grocery list
+# To do: fill out details of other regions, add more recipes for each region, add function to randomly select 3 regions for user to choose from, scrape web for recipes/playlists/grocery lists, graphic interface?
+
+
+region = {
+
+    'Creole': {'recipe': 'https://copykat.com/new-orleans-style-shrimp-and-grits/',
+               'grocery list': ['grits', 'whole milk', 'romano cheesee', 'butter', '1lb of large shrimp', 'garlic', 'worcestershire sauce', 'light-tasting beer',
+                                    'cajun seasoning', 'crab/shrimp boil seasoning', 'thyme leaves', 'oregano', 'rosemary leaves'],
+               'playlist': 'https://www.youtube.com/watch?v=0wAMr3V5lN4&list=PL58D1905639B26DB8'},
+
+    'Cajun': {'recipe': 'https://www.seriouseats.com/cajun-gumbo-with-chicken-and-andouille-recipe',
+              'grocery list': ['1 cup plus 1 tablespoon canola or vegetable oil',
+                               '6 boneless, skinless chicken thighs', 'Kosher salt', '1/2 pounds Cajun-style andouille sausage', '1 cup all-purpose flour',
+                               '2 large yellow onions', '2 green bell peppers', '4 large celery ribs', '8 medium cloves garlic',
+                               '1/4 teaspoon cayenne pepper', 'Freshly ground black pepper', '1 1/2 quarts brown or white chicken stock', '2 dried bay leaves',
+                               '2 large sprigs fresh thyme', '1 pound fresh okra, caps trimmed', '1/2 teaspoon filé powder', 'Rice'],
+              'playlist': 'https://www.youtube.com/watch?v=L1S-zW5QlO0&list=PLYRpau8yECtRzt4Jy-FRV1G9er4QbLNjh'},
+
+    'Italian':{'recipe': 'https://www.christinascucina.com/lasagna-traditional-italian-recipe-easy-step-by-step-directions/',
+                'grocery list': ['4 Tbsp extra virgin olive oil', '3 or 4 cloves of garlic', '2 Tbsp chopped fresh parsley', '1 lb ground beef',
+                                '42 oz Italian tomato purée or whole tomatoes, puréed', 'Kosher or sea salt', 'pepper', 'fresh basil', '3 oz butter', '4 oz flour',
+                                '24 oz warm whole milk', 'dash of nutmeg', 'Kosher or sea salt', 'white pepper', '1 lb lasagna noodles or sheets', '10 oz shredded mozzarella cheese',
+                                '2 Tbsp grated Parmigiano Reggiano cheese',],
+                'playlist': 'https://www.youtube.com/watch?v=qRPnAbZ8iig&list=RDEMwEzHUgPq_Bps8fOptFbr5Q&start_radio=1'},
+
+    'Mexican': {'recipe': 'https://www.isabeleats.com/chile-relleno-recipe/',
+                'grocery list': ['6 large poblano peppers', '8 ounces Monterey Jack cheese', '4 cups oil', '3 large eggs', '1/2 cup all-purpose flour', '1/2 teaspoon table salt',
+                                 '6 roma tomatoes', '1/2 small onion', '3 cloves garlic' , '1 jalapeno', '5 sprigs cilantro', '1 teaspoon coarse kosher salt', '1 teaspoon olive oil'],
+                'playlist': 'https://www.youtube.com/watch?v=ULxcmMgsxf4&list=PLaaWUVVBchC6PwZSq4M6TJagT7pwpEgXQ'},
+
+    'Greek': {'recipe': 'https://www.foodandwine.com/recipes/chicken-souvlaki',
+              'grocery list': ['2 cups plain yogurt', '1 cucumber', '1 1/4 teaspoons salt', '1 clove garlic', 'Fresh-ground black pepper', '1/4 teaspoon dried dill', '2 tablespoons olive oil',
+              '1 1/2 teaspoons lemon juice', '1 tablespoon dried oregano', '1 1/3 pounds boneless skinless chicken breasts (about 4)', '4 pocketless pitas', '6 tablespoons butter', '1 small onion',
+              '2 tomatoes', '1/3 cup black olives'],
+              'playlist': 'https://www.youtube.com/watch?v=N7xDVDyfXZA&list=PLczYUKWBDgmcEHzS3xs3nlYfR5lKiTILE'},
+
+    'Thai': {'recipe': 'https://www.recipetineats.com/chicken-pad-thai/',
+             'grocery list': ['chicken', 'onion', 'sausage'],
+             'playlist': 'https://www.youtube.com/watch?v=1aR9lLz6xgU&list=PLIaHNxf-ffO8pQiiXJqdxEBHQGj_IaOud'},
+
+    'Chinese': {'recipe': 'https://sprinkleofhealthy.com/chinese-traditional-pork-bao-zi/',
+                'grocery list': ['chicken', 'onion', 'sausage'],
+                'playlist': 'https://www.youtube.com/watch?v=IxM1tjTvFAc&list=PLKXPEt10UAjGnUVNeujkcu8vnA4y7i4bU'},
+
+    'French': {'recipe': 'https://www.delish.com/cooking/recipe-ideas/a30875984/coq-au-vin-recipe/',
+               'grocery list': ['chicken', 'onion', 'sausage'],
+               'playlist': 'https://www.youtube.com/watch?v=pnWFghAQ2FY&list=PLtOGB4dki1N13w4bJIfDsUTWBSlJjnqqP&index=1'},
+
+    'Indian': {'recipe': 'https://www.cubesnjuliennes.com/lamb-vindaloo-recipe-mutton-vindaloo/',
+               'grocery list': ['chicken', 'onion', 'sausage'],
+               'playlist': 'https://www.youtube.com/watch?v=BE8_rNJOQ-0&list=PL__GQ-SJLZE_zZruVwNS8xSeK6xYPAdh5'},
+
+    'Japanese': {'recipe': 'https://www.thespruceeats.com/spicy-tuna-donburi-rice-bowl-2031317',
+                 'grocery list': ['chicken', 'onion', 'sausage'],
+                 'playlist': 'https://www.youtube.com/watch?v=g3FhFewRCY0&list=PLCF47CDCDD5ED5627&index=1'},
+
+    }
+
+
+
+#**** Open Brower and save shopping list *****
+
+#shopping_list = region['New Orleans']['grocery list']
+#open_nola_recipe = webbrowser.open(region['New Orleans']['recipe'])
+#open_nola_playlist = webbrowser.open_new(region['New Orleans']['playlist'])
+
+#with open('Shopping_List.txt', 'w') as f:
+    #f.write('Here is your shopping list:\n\n')
+    #for items in shopping_list:
+        #f.write("O -- %s\n" % items)
+
+
+random_region = random.sample(list(region), 3)
+random_region_string = ' \n'.join(random_region)
+
+
+print('Here are your choices:\n')
+print(f'{random_region_string}\n')
+print('Which would you like to choose?\n')
+answer = input()
+#answer = answer.title()
+
+shopping_list = region[answer]['grocery list']
+
+if region.get(answer.title()) != None:
+    print(f"\nYou're going to love this {answer} experience, enjoy!")
+
+    open_recipe = webbrowser.open(region[answer]['recipe'])
+    open_playlist = webbrowser.open_new(region[answer]['playlist'])
+
+    with open('Shopping_List.txt', 'w') as f:
+        f.write(f'Here is your {answer} shopping list:\n\n')
+        for items in shopping_list:
+            f.write("O -- %s\n" % items)
+else:
+    print('Make sure to check your spelling!')
